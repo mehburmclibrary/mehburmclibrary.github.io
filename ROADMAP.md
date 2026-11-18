@@ -17,13 +17,18 @@ fazlar (2 ve 6) launcher reposunda ayrı PR olarak açılır.
 - GitHub Actions ile otomatik yayın, branch koruması, Dependabot
 - Lint ve test altyapısı
 
-## Faz 2: Veritabanı eklemesi (launcher reposu)
+## Faz 2: Veritabanı eklemesi (launcher reposu) ✅
 
-- Giriş yapmadan çağrılabilen liste fonksiyonu: yalnızca onaylı içerik, gizli alanlar hariç
-  (sahip kimliği, tarama detayları, admin notları)
-- Onaylı dosyalar için girişsiz indirme izni
-- Siteden gelen yüklemeler için "web'den yüklendi" işareti + launcher admin panelinde gösterimi
-- `_test.sql` dosyası; SQL, Supabase SQL Editor'de elle çalıştırılır
+Launcher v0.33.0, `supabase/library_web.sql` (MehburMC-Launcher PR #10). Supabase'de çalıştırıldı.
+
+- `library_public_list()`: giriş yapmadan çağrılır, yalnızca onaylı içerik; sahip kimliği sütunu,
+  tarama raporu ve admin notları yok. İndirme yolu `file_path` alanında. Arama, süzgeç ve sayfalama
+  PostgREST parametreleriyle (`kind=eq.mod`, `loaders=cs.{fabric}`, `limit`, `offset`)
+- Onaylı dosyalar için girişsiz indirme izni (imzalı bağlantı da çalışır)
+- `submit_library_mod(..., p_source => 'web')`: siteden gelen yükleme "Siteden yüklendi" rozetiyle
+  admin kuyruğunda görünür
+- Launcher'ın kendi liste fonksiyonu giriş yapmamış ziyaretçiye kapatıldı
+- `library_web_test.sql` → `LIBRARY_WEB_OK`
 
 ## Faz 3: Kütüphane vitrini (v0.2.0)
 
