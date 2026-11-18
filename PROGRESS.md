@@ -3,6 +3,28 @@
 ### [2026-11-18 - Mehbur07]
 
 - **Yapılanlar & Kararlar:**
+  - `v0.2.0` tag'i ve GitHub sürümü (PR #6)
+  - Kullanıcı ayrı bir Gmail ile yeni bir Supabase projesi açmıştı; kullanılmadı. Hesaplar,
+    kütüphane, banlar ve hesap adları launcher'ın projesinde olduğu için ayrı proje "iki yerde
+    birden görünsün" hedefini bozar
+  - Faz 4: `/account/` (giriş, kayıt + 6 haneli kod, şifre sıfırlama, Google, ban, hesap adları,
+    çıkış), menüde "Giriş yap / Hesabım". Kurallar ve hata eşlemesi launcher ile aynı
+  - Launcher PR #12: `supabase/site_account.sql` → `my_account_names()` (K103)
+- **Son Commit:** f4e400b Merge pull request #6 from mehburmclibrary/chore/release-v0.2.0
+- **Aktif Branch:** feature/accounts
+- **Sıradaki İlk İş (Next Action):** Launcher PR #12'deki ARCHITECTURE.md çakışması kullanıcı
+  onayıyla çözülüp merge edilecek, sonra kullanıcı `site_account.sql`'i Supabase'de çalıştıracak;
+  kullanıcı "başla" derse Faz 5 (mod yükleme)
+- **Bilinen Sorunlar / Dikkat Edilmesi Gerekenler:**
+  - Gerçek kayıt / giriş / Google akışı kullanıcının kendi hesabıyla canlıda denenmeli
+    (otomatik testler sahte sunucuyla; canlıda yalnızca yanlış şifre ve Google yönlendirmesi denendi)
+  - Supabase Redirect URLs'te `https://mehburmclibrary.github.io/**` olmalı
+  - Girişsiz indirme Supabase egress kotasını tüketir; Usage → Egress takip edilmeli
+  - picomatch (high) açığı yalnızca geliştirme araçlarında, düzeltilmiş sürüm yok
+
+### [2026-11-18 - Mehbur07]
+
+- **Yapılanlar & Kararlar:**
   - Dependabot PR #1 kapatıldı; `@types/node` büyük sürüm güncellemeleri yok sayılıyor (PR #2).
     `v0.1.0` tag'i ve GitHub sürümü (PR #3)
   - Faz 2 (launcher PR #10, launcher v0.33.0): `supabase/library_web.sql` Supabase'de çalıştırıldı

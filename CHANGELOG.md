@@ -5,6 +5,13 @@ Biçim [Keep a Changelog](https://keepachangelog.com/tr/1.1.0/) temellidir; sür
 
 ## [Unreleased]
 
+### Eklendi
+
+- Hesap sayfası: MehburMC Launcher'daki hesapla giriş, kayıt (e-postaya gelen 6 haneli kodla),
+  şifre sıfırlama ve Google ile giriş. Banlı hesaplar ban süresini ve sebebini görüyor.
+- Hesap sayfasında hesap adları listeleniyor ve yeni ad eklenebiliyor.
+- Üst menüde "Giriş yap" / "Hesabım" bağlantısı.
+
 ## [0.2.0] - 2026-11-18
 
 ### Eklendi

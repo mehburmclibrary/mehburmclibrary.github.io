@@ -6,8 +6,8 @@ kütüphaneyi kullanır: launcher'dan ya da siteden yüklenen içerik iki yerde 
 
 **Canlı site:** https://mehburmclibrary.github.io
 
-> **Durum:** Kütüphane vitrini hazır: onaylı içerik giriş yapmadan aranıp indirilebilir. Hesap
-> ve yükleme sonraki fazlarda gelecek. Fazlar için [ROADMAP.md](ROADMAP.md), değişiklikler için
+> **Durum:** Kütüphane vitrini ve hesap sistemi hazır: onaylı içerik giriş yapmadan aranıp
+> indirilebilir, MehburMC hesabıyla giriş yapılabilir. Siteden yükleme sonraki fazda gelecek. Fazlar için [ROADMAP.md](ROADMAP.md), değişiklikler için
 > [CHANGELOG.md](CHANGELOG.md) dosyasına bak.
 
 ## Özellikler
@@ -17,6 +17,8 @@ kütüphaneyi kullanır: launcher'dan ya da siteden yüklenen içerik iki yerde 
   bağlantı olarak paylaşılabilir
 - İçerik sayfası (`/item/?id=…`): bilgiler, kurulum ipucu, SHA-1 ve giriş yapmadan indirme
 - Ana sayfada son eklenen içerikler
+- Hesap (`/account/`): MehburMC Launcher ile aynı hesap. E-posta + şifre ile giriş ve kayıt
+  (6 haneli e-posta kodu), şifre sıfırlama, Google ile giriş, ban durumu, hesap adları
 - Açık / koyu tema: ilk açılışta bilgisayarın teması kullanılır, seçim hatırlanır
 - Türkçe / İngilizce: ilk açılışta tarayıcının dili kullanılır, seçim hatırlanır
 - Telefon, tablet ve bilgisayarda düzgün görünür; klavye ve ekran okuyucuyla kullanılabilir
@@ -76,8 +78,14 @@ Actions → Variables: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`).
 
 ## Sunucu tarafı ve indirme kotası
 
-Veritabanı kuralları launcher reposundadır (`supabase/library_web.sql`): site yalnızca onaylı
-içeriği görür, giriş yapmadan yalnızca onaylı dosyaları indirebilir.
+Veritabanı kuralları launcher reposundadır: `supabase/library_web.sql` (site yalnızca onaylı
+içeriği görür, giriş yapmadan yalnızca onaylı dosyaları indirebilir) ve `supabase/site_account.sql`
+(giriş yapan kullanıcı kendi hesap adlarını görür). SQL dosyaları Supabase → SQL Editor'de, her
+zaman **launcher'ın projesinde** çalıştırılır.
+
+Giriş için Supabase → Authentication → URL Configuration → Redirect URLs listesinde
+`https://mehburmclibrary.github.io/**` ve geliştirme için `http://localhost:5173/**` bulunmalıdır
+(Google ile girişten dönüş ve e-posta bağlantıları buraya gelir).
 
 Her indirme Supabase'in aylık **veri aktarımı (egress)** kotasından düşer; ücretsiz planda bu
 kota sınırlıdır. Kullanımı Supabase panelinde **Organization → Usage → Egress** bölümünden takip
