@@ -360,6 +360,12 @@
 }
 
 /* İçerik detay sayfası -------------------------------------------------------------- */
+/* İçerik yüklenirken alan bir ekran boyu yer tutar: içerik gelince alt bilgi görünür alanda
+   zıplamasın (yerleşim kayması / CLS) */
+.item-page[aria-busy="true"] {
+  min-height: 100vh;
+  min-height: 100svh;
+}
 .back-link {
   display: inline-flex;
   align-items: center;

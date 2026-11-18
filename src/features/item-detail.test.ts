@@ -151,6 +151,38 @@ describe("içerik detay sayfası", () => {
     });
   });
 
+  it("arama motorları için kalıcı adres ve içeriğin açıklamasını yazar", async () => {
+    mount("?id=18");
+    initItemDetail(
+      document,
+      source({ getItem: vi.fn(async () => fakeItem({ description: "  Golem\n  şakası " })) }),
+    );
+    await flush();
+    expect(document.querySelector<HTMLLinkElement>('link[rel="canonical"]')!.href).toBe(
+      "https://mehburmclibrary.github.io/item/?id=18",
+    );
+    const desc = document.querySelector<HTMLMetaElement>('meta[name="description"]')!;
+    expect(desc.content).toBe("Golem şakası");
+    expect(desc.hasAttribute("data-i18n-attr")).toBe(false);
+  });
+
+  it("uzun açıklamayı kısaltır, açıklama yoksa tür ve yükleyeni yazar", async () => {
+    mount("?id=18");
+    initItemDetail(
+      document,
+      source({ getItem: vi.fn(async () => fakeItem({ description: "a".repeat(300) })) }),
+    );
+    await flush();
+    const desc = () => document.querySelector<HTMLMetaElement>('meta[name="description"]')!;
+    expect(desc().content).toHaveLength(158);
+    expect(desc().content.endsWith("…")).toBe(true);
+
+    mount("?id=18");
+    initItemDetail(document, source({ getItem: vi.fn(async () => fakeItem({ description: "" })) }));
+    await flush();
+    expect(desc().content).toBe("Iron Golem Troll · Mod · By MehburMC");
+  });
+
   it("açıklamadaki HTML düz yazı olarak görünür", async () => {
     mount("?id=18");
     const evil = "<script>window.hacked=1</script><b>kalın</b>";

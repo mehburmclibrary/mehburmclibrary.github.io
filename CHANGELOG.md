@@ -10,6 +10,13 @@ Biçim [Keep a Changelog](https://keepachangelog.com/tr/1.1.0/) temellidir; sür
 - Ana sayfada MehburMC Launcher sitesine giden bir tanıtım kartı.
 - İçerik sayfasında "Launcher'da aç" düğmesi: içerik MehburMC Launcher'ın Kütüphane sekmesinde açılır.
   Launcher açılmazsa indirme sayfası önerilir.
+- Arama motorları için site haritası (sitemap.xml) ve her içerik sayfası için kalıcı adres.
+- Bağlantı Discord, WhatsApp gibi yerlerde paylaşılınca görünen önizleme görseli.
+
+### Düzeltildi
+
+- Açık temada bazı yazılar zeminle yeterince ayrışmıyordu (erişilebilirlik); renk koyulaştırıldı.
+- İçerik sayfası yüklenirken alt bilgi aşağı zıplıyordu.
 
 ## [1.0.0] - 2026-11-18
 

@@ -1,0 +1,145 @@
+<!doctype html>
+<!--
+  Paylaşım önizleme görselinin (public/og-image.png, 1200×630) kaynağı. Bağlantı Discord,
+  WhatsApp, X vb. yerlerde paylaşılınca bu görsel çıkar.
+  Yeniden üretmek için: bu dosyayı proje kökünden bir sunucuyla açıp (ör. `pnpm dev` →
+  http://localhost:5173/scripts/og-image.html) 1200×630 pencerede ekran görüntüsü al.
+-->
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <title>OG görseli</title>
+    <style>
+      @font-face {
+        font-family: "Orbitron";
+        font-weight: 900;
+        src: url("../src/fonts/orbitron-latin-900-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Rajdhani";
+        font-weight: 700;
+        src: url("../src/fonts/rajdhani-latin-700-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Rajdhani";
+        font-weight: 700;
+        src: url("../src/fonts/rajdhani-latin-ext-700-normal.woff2") format("woff2");
+        unicode-range: U+0100-024F, U+1E00-1EFF;
+      }
+      @font-face {
+        font-family: "Inter";
+        font-weight: 100 900;
+        src: url("../src/fonts/inter-latin-wght-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Inter";
+        font-weight: 100 900;
+        src: url("../src/fonts/inter-latin-ext-wght-normal.woff2") format("woff2");
+        unicode-range: U+0100-024F, U+1E00-1EFF;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+      }
+      body {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 64px;
+        padding: 0 96px;
+        color: #e6f1f5;
+        font-family: "Inter", sans-serif;
+        background:
+          radial-gradient(ellipse 55% 75% at 85% 50%, rgb(0 240 255 / 0.18), transparent 70%),
+          radial-gradient(ellipse 40% 60% at 0% 100%, rgb(0 240 255 / 0.08), transparent 70%),
+          #05070a;
+      }
+      body::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cg fill='none' stroke='%2300f0ff' stroke-opacity='0.07' stroke-width='0.8'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34'/%3E%3C/g%3E%3C/svg%3E");
+      }
+      body::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-top: 6px solid #00f0ff;
+        box-shadow: inset 0 6px 24px -10px rgb(0 240 255 / 0.6);
+      }
+      .text {
+        position: relative;
+        flex: 1;
+      }
+      .chip {
+        display: inline-block;
+        padding: 8px 18px;
+        font-family: "Rajdhani", sans-serif;
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #00f0ff;
+        border: 2px solid rgb(0 240 255 / 0.5);
+        border-radius: 999px;
+        background: rgb(0 240 255 / 0.08);
+      }
+      h1 {
+        margin: 26px 0 10px;
+        font-family: "Orbitron", sans-serif;
+        font-size: 92px;
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: 0.01em;
+      }
+      h1 span {
+        color: #00f0ff;
+        text-shadow: 0 0 22px rgb(0 240 255 / 0.65);
+      }
+      .suffix {
+        display: block;
+        margin-top: 10px;
+        font-size: 64px;
+      }
+      p {
+        margin: 26px 0 0;
+        max-width: 620px;
+        font-size: 30px;
+        line-height: 1.4;
+        color: #a9bcc6;
+      }
+      .url {
+        margin-top: 30px;
+        font-family: "Rajdhani", sans-serif;
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: #00f0ff;
+      }
+      img {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        border-radius: 56px;
+        box-shadow:
+          0 0 0 2px rgb(0 240 255 / 0.6),
+          0 0 60px rgb(0 240 255 / 0.45);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="text">
+      <span class="chip">Topluluk kütüphanesi</span>
+      <h1>Mehbur<span>MC</span><span class="suffix">Kütüphane</span></h1>
+      <p>Modlar, modpack'ler, resource pack'ler ve shader'lar. Ara, indir, paylaş.</p>
+      <div class="url">mehburmclibrary.github.io</div>
+    </div>
+    <img src="../public/icons/icon-512.png" alt="" />
+  </body>
+</html>

@@ -8,12 +8,14 @@ import { onLangChange, t, tf } from "../lib/i18n";
 import {
   displayGameVersions,
   itemIdFromParams,
+  itemUrl,
   launcherLink,
   loaderName,
   type LibraryItem,
 } from "../lib/library";
 import type { MessageKey } from "../i18n/tr";
 import type { UploadApi } from "../lib/upload";
+import { SITE_URL } from "../lib/sitemap";
 import { createReportWidget, type ReportWidget } from "./report";
 
 export interface ItemSource {
@@ -43,6 +45,30 @@ const INSTALL_KEYS: Record<LibraryItem["kind"], MessageKey> = {
 function installText(item: LibraryItem): string {
   const loaders = item.loaders.map(loaderName).join(" / ") || "—";
   return tf(INSTALL_KEYS[item.kind], { loaders });
+}
+
+/** Arama motorları için: içeriğin kalıcı adresi ve kendi açıklaması. */
+export function applyItemMeta(doc: Document, it: LibraryItem): void {
+  let canonical = doc.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = doc.createElement("link");
+    canonical.rel = "canonical";
+    doc.head.append(canonical);
+  }
+  canonical.href = SITE_URL + itemUrl(it.id);
+
+  const desc = doc.querySelector<HTMLMetaElement>('meta[name="description"]');
+  if (desc) {
+    const text = it.description.replace(/\s+/g, " ").trim();
+    desc.content =
+      text.length > 0
+        ? text.length > 160
+          ? `${text.slice(0, 157).trimEnd()}…`
+          : text
+        : `${it.name} · ${kindLabel(it.kind)} · ${tf("item.by", { author: it.author })}`;
+    // Dil değişince çeviri sistemi genel açıklamayı geri yazmasın
+    desc.removeAttribute("data-i18n-attr");
+  }
 }
 
 function row(label: string, ...value: (Node | string)[]): HTMLDivElement {
@@ -272,6 +298,7 @@ export function initItemDetail(
     if (state === "loading") return;
     if (state === "ready" && item) {
       document.title = tf("meta.itemTitle", { name: item.name });
+      applyItemMeta(document, item);
       // Dil değişince çeviri sistemi başlığı geri yazmasın diye işaret kaldırılır
       document.querySelector("title")?.removeAttribute("data-i18n");
       // Yeniden çizimde düğmeler yeniden oluşur; klavye odağı aynı düğmede kalsın

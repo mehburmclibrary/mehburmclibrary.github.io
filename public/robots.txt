@@ -1,3 +1,5 @@
 # Arama motoru botları sitenin tamamını tarayabilir
 User-agent: *
 Allow: /
+
+Sitemap: https://mehburmclibrary.github.io/sitemap.xml
