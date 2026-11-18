@@ -38,6 +38,11 @@ export function locale(): string {
   return current === "tr" ? "tr-TR" : "en-GB";
 }
 
+/** Bu anahtar sözlükte var mı? (ör. türe özel bir metin tanımlanmış mı) */
+export function hasMessage(key: string): key is MessageKey {
+  return key in tr;
+}
+
 function isKey(key: string): key is MessageKey {
   return key in tr;
 }

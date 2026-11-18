@@ -639,6 +639,22 @@ export function initAccount(root: ParentNode, api: AuthApi, opts: AccountOptions
       ...messages(),
       banBox(),
       namesSection(),
+      h(
+        "section",
+        { class: "account-section", "aria-labelledby": "content-title" },
+        h("h2", { id: "content-title" }, t("auth.contentTitle")),
+        h(
+          "div",
+          { class: "account-links" },
+          h(
+            "a",
+            { class: "btn btn-primary btn-sm", href: "/upload/" },
+            icon("upload", "icon-sm"),
+            h("span", {}, t("auth.uploadLink")),
+          ),
+          h("a", { class: "btn btn-ghost btn-sm", href: "/uploads/" }, t("auth.myUploadsLink")),
+        ),
+      ),
       h("p", { class: "muted small" }, t("auth.launcherNote")),
       h("div", { class: "account-actions" }, signOut),
     );

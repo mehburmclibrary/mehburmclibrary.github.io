@@ -11,10 +11,14 @@ import {
   type LibraryItem,
 } from "../lib/library";
 import type { MessageKey } from "../i18n/tr";
+import type { UploadApi } from "../lib/upload";
+import { createReportWidget, type ReportWidget } from "./report";
 
 export interface ItemSource {
   getItem(id: number): Promise<LibraryItem | null>;
   downloadUrl(item: LibraryItem): Promise<string>;
+  /** Şikâyet işlemleri; verilmezse "Şikâyet et" bölümü gösterilmez. */
+  reporter?: Pick<UploadApi, "userId" | "report">;
 }
 
 /** Dosya indirmesini başlatır (testlerde değiştirilebilsin diye ayrı). */
@@ -50,6 +54,7 @@ export function initItemDetail(
   let downloading = false;
   let downloadFailed = false;
   let copied = false;
+  let report: ReportWidget | null = null;
 
   async function download() {
     if (!item || downloading) return;
@@ -158,6 +163,7 @@ export function initItemDetail(
               h("span", {}, t("item.launcherTip")),
             ),
           ),
+          report?.el ?? null,
         ),
         h(
           "aside",
@@ -226,6 +232,7 @@ export function initItemDetail(
     }
     try {
       item = await source.getItem(id);
+      if (item && source.reporter) report = createReportWidget(item.id, source.reporter);
       state = item ? "ready" : "missing";
     } catch {
       state = "error";
@@ -233,6 +240,9 @@ export function initItemDetail(
     render();
   }
 
-  onLangChange(render);
+  onLangChange(() => {
+    report?.render();
+    render();
+  });
   void load();
 }

@@ -10,6 +10,8 @@ const pages = {
   library: resolve(import.meta.dirname, "library/index.html"),
   item: resolve(import.meta.dirname, "item/index.html"),
   account: resolve(import.meta.dirname, "account/index.html"),
+  upload: resolve(import.meta.dirname, "upload/index.html"),
+  uploads: resolve(import.meta.dirname, "uploads/index.html"),
 };
 
 export default defineConfig({

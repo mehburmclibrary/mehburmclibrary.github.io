@@ -3,6 +3,30 @@
 ### [2026-11-18 - Mehbur07]
 
 - **Yapılanlar & Kararlar:**
+  - Launcher PR #12 (`site_account.sql`, `my_account_names()`) ARCHITECTURE.md çakışması iki satır
+    da tutularak çözüldü ve merge edildi; kullanıcı SQL'i Supabase'de çalıştırmalı
+  - Faz 5: `/upload/`, `/uploads/`, içerik sayfasında şikâyet; menüde "Yükle"
+  - Launcher'ın dosya tarayıcısı TypeScript'e birebir taşındı (`src/lib/scan/`, zip okuyucu +
+    fflate). 462 dosyada Rust ile karşılaştırıldı: gerçek ve test dosyalarında fark yok; bozuk
+    zip'lerde site yalnızca daha katı
+  - Dosya depoya ham bayt + doğru Content-Type ile gider (launcher ile aynı); kayıt `p_source = web`
+  - Tarayıcı testi gerçek bir hata yakaladı: Yüklediklerim kartlarında başlık bağlantısı diğer
+    kartların düğmelerini kapatıyordu (düzeltildi)
+- **Son Commit:** 6412c54 Merge pull request #7 from mehburmclibrary/feature/accounts
+- **Aktif Branch:** feature/uploads
+- **Sıradaki İlk İş (Next Action):** Faz 5 PR'ı merge edilince `v1.0.0` tag'i önerilecek;
+  kullanıcı "başla" derse Faz 6 ("Launcher'da aç", launcher reposu)
+- **Bilinen Sorunlar / Dikkat Edilmesi Gerekenler:**
+  - Gerçek yükleme canlıda kullanıcının hesabıyla denenmeli (otomatik testler sahte sunucu
+    cevaplarıyla; gerçek kütüphaneye test yüklemesi yapılmadı)
+  - Launcher'ın tarama kuralları değişirse `src/lib/scan/` da güncellenmeli
+  - Launcher'da açık 5 high Dependabot uyarısı (yalnızca geliştirme araçları: undici, vite);
+    kullanıcı `fix/dev-dependency-security` branch'inde çalışıyor görünüyor
+  - Supabase'de birden fazla proje var: SQL her zaman `rcaifwsiutoxilpkceht` projesinde
+
+### [2026-11-18 - Mehbur07]
+
+- **Yapılanlar & Kararlar:**
   - `v0.2.0` tag'i ve GitHub sürümü (PR #6)
   - Kullanıcı ayrı bir Gmail ile yeni bir Supabase projesi açmıştı; kullanılmadı. Hesaplar,
     kütüphane, banlar ve hesap adları launcher'ın projesinde olduğu için ayrı proje "iki yerde

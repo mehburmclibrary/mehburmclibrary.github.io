@@ -6,8 +6,9 @@ kütüphaneyi kullanır: launcher'dan ya da siteden yüklenen içerik iki yerde 
 
 **Canlı site:** https://mehburmclibrary.github.io
 
-> **Durum:** Kütüphane vitrini ve hesap sistemi hazır: onaylı içerik giriş yapmadan aranıp
-> indirilebilir, MehburMC hesabıyla giriş yapılabilir. Siteden yükleme sonraki fazda gelecek. Fazlar için [ROADMAP.md](ROADMAP.md), değişiklikler için
+> **Durum:** Kütüphane vitrini, hesap sistemi ve siteden yükleme hazır. Onaylı içerik giriş
+> yapmadan aranıp indirilebilir; MehburMC hesabıyla giriş yapıp mod, modpack, resource pack ve
+> shader yüklenebilir. Fazlar için [ROADMAP.md](ROADMAP.md), değişiklikler için
 > [CHANGELOG.md](CHANGELOG.md) dosyasına bak.
 
 ## Özellikler
@@ -19,6 +20,10 @@ kütüphaneyi kullanır: launcher'dan ya da siteden yüklenen içerik iki yerde 
 - Ana sayfada son eklenen içerikler
 - Hesap (`/account/`): MehburMC Launcher ile aynı hesap. E-posta + şifre ile giriş ve kayıt
   (6 haneli e-posta kodu), şifre sıfırlama, Google ile giriş, ban durumu, hesap adları
+- Yükleme (`/upload/`): tür seç → sürükle-bırak → dosya tarayıcıda otomatik kontrol edilir →
+  ad / açıklama / yükleyen adı → yöneticilerin onayına "siteden" işaretiyle düşer
+- Yüklediklerim (`/uploads/`): onay bekliyor / yayında / reddedildi, yönetici notu, geri çekme
+- İçerik sayfasında "Şikâyet et"
 - Açık / koyu tema: ilk açılışta bilgisayarın teması kullanılır, seçim hatırlanır
 - Türkçe / İngilizce: ilk açılışta tarayıcının dili kullanılır, seçim hatırlanır
 - Telefon, tablet ve bilgisayarda düzgün görünür; klavye ve ekran okuyucuyla kullanılabilir
@@ -60,6 +65,7 @@ src/shell.ts           Her sayfada ortak üst menü ve alt bilgi
 src/features/          Sayfaların davranışı: liste, içerik sayfası, son eklenenler (+ testleri)
 src/components/        İçerik kartı, tür rozeti, yükleniyor / boş / hata kutuları
 src/lib/               Supabase bağlantısı (api.ts), filtreler, tema, dil, biçimler (+ testleri)
+src/lib/scan/          Dosya tarayıcısı: launcher'daki tarayıcının birebir karşılığı (+ testleri)
 src/i18n/              Türkçe (ana kaynak) ve İngilizce metinler
 src/styles/            Stiller: tokens.css (renkler), base.css, shell.css, sayfa stilleri
 src/fonts/             Yazı tipleri ve lisansları
@@ -75,6 +81,20 @@ Yeni bir metin eklerken önce `src/i18n/tr.ts`'e, sonra aynı anahtarla `src/i18
 GitHub Pages'e yayınlar. `main`'e doğrudan push kapalıdır, değişiklikler Pull Request ile girer.
 Yayın derlemesi Supabase ayarlarını repo değişkenlerinden alır (Settings → Secrets and variables →
 Actions → Variables: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`).
+
+## Dosya tarayıcısı
+
+Yüklenecek dosya, gönderilmeden önce tarayıcıda (arka planda, Web Worker ile) kontrol edilir.
+`src/lib/scan/` MehburMC Launcher'daki tarayıcının (`crates/launcher-core/src/content/scan.rs`,
+sürüm 2) birebir TypeScript karşılığıdır: aynı kurallar, aynı bulgu kodları, aynı rapor. Sunucu
+raporu yüklemeyle birlikte saklar; yöneticiler onaylamadan önce dosyayı kendi launcher'larında
+yeniden tarar.
+
+Launcher'ın testleri `scan.test.ts`'e taşındı. Ayrıca iki tarayıcı 462 dosyada (288 gerçek mod ve
+paket, launcher test dosyaları ve bilerek bozulmuş kopyalar) karşılaştırıldı: gerçek ve test
+dosyalarının hepsinde rapor birebir aynı; yalnızca içindekiler bölümü bozuk birkaç zip'te site
+daha katı davranıp reddediyor (launcher'ın reddettiğini sitenin kabul ettiği bir durum yok).
+Launcher'daki kurallar değişirse bu klasör de aynı şekilde güncellenmelidir.
 
 ## Sunucu tarafı ve indirme kotası
 
