@@ -1,0 +1,7 @@
+* text=auto eol=lf
+
+# İkili dosyalar: satır sonu dönüştürmesi yapılmaz
+*.woff2 binary
+*.webp binary
+*.png binary
+*.ico binary
