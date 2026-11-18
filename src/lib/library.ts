@@ -141,6 +141,14 @@ export function itemUrl(id: number): string {
   return `/item/?id=${id}`;
 }
 
+/**
+ * İçeriği MehburMC Launcher'ın Kütüphane sekmesinde açan adres (launcher K112). Launcher bu
+ * adresle yalnızca içeriği gösterir, kendiliğinden kurulum yapmaz.
+ */
+export function launcherLink(id: number): string {
+  return `mehburmc://library/${id}`;
+}
+
 /** ?id= değerini okur; pozitif bir tam sayı değilse null. */
 export function itemIdFromParams(params: URLSearchParams): number | null {
   const raw = params.get("id") ?? "";

@@ -1,8 +1,8 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { setLang } from "../lib/i18n";
-import { initItemDetail, type ItemSource } from "./item-detail";
+import { initItemDetail, LAUNCHER_WAIT_MS, type ItemSource } from "./item-detail";
 import { fakeItem, flush } from "./test-helpers";
 
 const html = readFileSync(resolve(import.meta.dirname, "../../item/index.html"), "utf8");
@@ -101,6 +101,54 @@ describe("içerik detay sayfası", () => {
     box().querySelector<HTMLButtonElement>('[role="alert"] button')!.click();
     await flush();
     expect(box().querySelector("h1")!.textContent).toBe("Iron Golem Troll");
+  });
+
+  describe("Launcher'da aç", () => {
+    // jsdom bağlantıyı gerçekten açmaya çalışmasın
+    const stop = (e: Event) => e.preventDefault();
+    beforeEach(() => document.addEventListener("click", stop));
+    afterEach(() => {
+      document.removeEventListener("click", stop);
+      vi.useRealTimers();
+    });
+
+    async function openLink() {
+      mount("?id=18");
+      initItemDetail(document, source());
+      await flush();
+      const link = box().querySelector<HTMLAnchorElement>("[data-focus=launcher]")!;
+      vi.useFakeTimers();
+      return link;
+    }
+    const hint = () => box().querySelector(".launcher-hint");
+
+    it("içeriğin mehburmc:// adresine bağlanır", async () => {
+      const link = await openLink();
+      expect(link.getAttribute("href")).toBe("mehburmc://library/18");
+      expect(link.textContent).toBe("Open in launcher");
+      expect(hint()).toBeNull();
+    });
+
+    it("launcher açılmazsa indirme sayfasını önerir", async () => {
+      const link = await openLink();
+      link.click();
+      vi.advanceTimersByTime(LAUNCHER_WAIT_MS - 1);
+      expect(hint()).toBeNull();
+      vi.advanceTimersByTime(1);
+      expect(hint()!.textContent).toContain("Didn't the launcher open?");
+      expect(hint()!.querySelector("a")!.getAttribute("href")).toBe("https://mehburmc.github.io/");
+      // Tekrar basınca kutu kapanır ve yeniden beklenir
+      box().querySelector<HTMLAnchorElement>("[data-focus=launcher]")!.click();
+      expect(hint()).toBeNull();
+    });
+
+    it("pencere odağı kaybederse (launcher açıldı) bir şey göstermez", async () => {
+      const link = await openLink();
+      link.click();
+      window.dispatchEvent(new Event("blur"));
+      vi.advanceTimersByTime(LAUNCHER_WAIT_MS);
+      expect(hint()).toBeNull();
+    });
   });
 
   it("açıklamadaki HTML düz yazı olarak görünür", async () => {

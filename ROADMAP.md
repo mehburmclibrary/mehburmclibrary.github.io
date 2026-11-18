@@ -59,11 +59,14 @@ Launcher v0.33.0, `supabase/library_web.sql` (MehburMC-Launcher PR #10). Supabas
   (kayıt ve dosya silinir)
 - İçerik sayfasında şikâyet (sebep + not)
 
-## Faz 6: "Launcher'da aç" (launcher reposu)
+## Faz 6: "Launcher'da aç" (launcher reposu) — yapılıyor
 
-- Launcher'a `mehburmc://` deep link desteği
-- Sitede buton; launcher kurulu değilse indirme sayfasına yönlendirme
-- Yeni launcher sürümü gerektirir
+- Launcher'a `mehburmc://library/<id>` deep link desteği (launcher PR #15, karar K112). Bağlantı
+  yalnızca içeriği launcher'ın Kütüphane sekmesinde gösterir, kendiliğinden kurulum yapmaz
+- Sitede "Launcher'da aç" düğmesi (`src/features/item-detail.ts`). Tarayıcılar bir uygulamanın kurulu
+  olup olmadığını söylemediği için: düğmeye basıldıktan sonra 2,5 sn içinde tarayıcı penceresi odağı
+  kaybetmezse (launcher açılmadıysa) "Launcher açılmadı mı?" kutusu indirme sayfasını önerir
+- Yeni launcher sürümü gerektirir (deep link desteği olan ilk sürüm)
 
 ## Faz 7: Cilalama
 

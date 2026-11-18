@@ -8,6 +8,8 @@ Biçim [Keep a Changelog](https://keepachangelog.com/tr/1.1.0/) temellidir; sür
 ### Eklendi
 
 - Ana sayfada MehburMC Launcher sitesine giden bir tanıtım kartı.
+- İçerik sayfasında "Launcher'da aç" düğmesi: içerik MehburMC Launcher'ın Kütüphane sekmesinde açılır.
+  Launcher açılmazsa indirme sayfası önerilir.
 
 ## [1.0.0] - 2026-11-18
 
