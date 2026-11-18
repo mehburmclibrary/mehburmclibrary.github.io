@@ -1,0 +1,95 @@
+/* Tasarım değişkenleri (renkler, yazı tipleri, ölçüler).
+   Koyu tema mmc-site ve launcher ile birebir aynıdır. Açık tema bu siteye özeldir:
+   neon cyan beyaz zeminde okunmadığı için vurgu rengi koyulaştırıldı (WCAG AA kontrast). */
+
+:root {
+  color-scheme: dark;
+
+  --bg: #05070a;
+  --surface-1: #0b1117;
+  --surface-2: #101a22;
+  --surface-3: #162430;
+  --border: #1c2b37;
+  --text: #e6f1f5;
+  --text-muted: #8fa3ae;
+
+  --accent: #00f0ff; /* neon cyan */
+  --accent-2: #00b8d4; /* koyu cyan */
+  --accent-glow: #7df9ff; /* açık parlama tonu */
+  --accent-rgb: 0 240 255; /* parlama gölgeleri için RGB hali */
+  --on-accent: #021a1d; /* cyan zemin üstündeki yazı rengi */
+
+  --success: #00ffa3;
+  --warn: #ffb800;
+  --danger: #ff3b5c;
+
+  /* Yarı saydam yüzeyler (menü, kart, alt bilgi) */
+  --header-bg: rgb(5 7 10 / 0.82);
+  --menu-bg: #05070a; /* mobil menü paneli: opak, arkadaki içerik görünmesin */
+  --card-bg: rgb(11 17 23 / 0.78);
+  --footer-bg: rgb(5 7 10 / 0.85);
+  --selection-text: #fff;
+
+  /* Arka plan efektleri */
+  --bg-glow: 0.16;
+  --hex-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cg fill='none' stroke='%237df9ff' stroke-opacity='0.07' stroke-width='0.6'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34'/%3E%3C/g%3E%3C/svg%3E");
+
+  --font-body: "Inter Variable", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Rajdhani", "Inter Variable", "Segoe UI", sans-serif;
+  --font-brand: "Orbitron", "Rajdhani", sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", Consolas, "SF Mono", Menlo, monospace;
+
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 16px;
+
+  --container: 1160px;
+  --gutter: 16px;
+  --nav-h: 68px;
+  --section-space: clamp(3.5rem, 7vw, 5.5rem);
+
+  /* Neon parlama gölgeleri */
+  --glow-sm: 0 0 0 1px rgb(var(--accent-rgb) / 0.55), 0 0 16px rgb(var(--accent-rgb) / 0.22);
+  --glow-md: 0 0 0 1px rgb(var(--accent-rgb) / 0.8), 0 0 24px rgb(var(--accent-rgb) / 0.45);
+  --glow-lg: 0 0 0 1px rgb(var(--accent-rgb) / 1), 0 0 38px rgb(var(--accent-rgb) / 0.65);
+  --text-glow: 0 0 12px rgb(var(--accent-rgb) / 0.55);
+}
+
+/* Açık tema: <html data-theme="light"> iken. Bu değeri sayfanın <head> kısmındaki küçük betik
+   (kayıtlı seçim ya da bilgisayarın teması) ve tema düğmesi ayarlar. */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #f4f8fa;
+  --surface-1: #ffffff;
+  --surface-2: #eaf1f4;
+  --surface-3: #dbe6eb;
+  --border: #c9d7de;
+  --text: #0b1a22;
+  --text-muted: #48606c;
+
+  --accent: #007c8a; /* beyaz zeminde 4.9:1 kontrast */
+  --accent-2: #00626d;
+  --accent-glow: #006a76; /* üstüne gelince koyulaşır: beyaz yazıyla 6.3:1 */
+  --accent-rgb: 0 124 138;
+  --on-accent: #ffffff;
+
+  --success: #00754d;
+  --warn: #9a5800;
+  --danger: #c4102b;
+
+  --header-bg: rgb(244 248 250 / 0.85);
+  --menu-bg: #f4f8fa;
+  --card-bg: rgb(255 255 255 / 0.85);
+  --footer-bg: rgb(234 241 244 / 0.9);
+  --selection-text: #0b1a22;
+
+  --bg-glow: 0.1;
+  --hex-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cg fill='none' stroke='%23007c8a' stroke-opacity='0.08' stroke-width='0.6'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34'/%3E%3C/g%3E%3C/svg%3E");
+
+  /* Açık zeminde parlama yerine yumuşak gölge */
+  --glow-sm: 0 0 0 1px rgb(var(--accent-rgb) / 0.45), 0 4px 14px rgb(var(--accent-rgb) / 0.12);
+  --glow-md: 0 0 0 1px rgb(var(--accent-rgb) / 0.7), 0 6px 18px rgb(var(--accent-rgb) / 0.2);
+  --glow-lg: 0 0 0 1px rgb(var(--accent-rgb) / 0.9), 0 8px 24px rgb(var(--accent-rgb) / 0.28);
+  --text-glow: none;
+}

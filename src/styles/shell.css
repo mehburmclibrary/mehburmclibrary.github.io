@@ -1,0 +1,347 @@
+/* Üst menü ve alt bilgi (mmc-site ile aynı yapı). İçerik src/shell.ts tarafından çizilir. */
+
+/* Üst menü ------------------------------------------------------------------------ */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  height: var(--nav-h);
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    backdrop-filter 0.25s ease;
+}
+/* Sayfa kaydırılınca ya da mobil menü açılınca menünün arkası koyulaşır ve bulanıklaşır */
+.site-header.is-scrolled,
+.site-header.is-open {
+  background: var(--header-bg);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom-color: var(--border);
+}
+
+.nav {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--text);
+  flex-shrink: 0;
+  min-width: 0;
+}
+.brand img {
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  filter: drop-shadow(0 0 6px rgb(var(--accent-rgb) / 0.45));
+}
+.brand-name {
+  font-family: var(--font-brand);
+  font-weight: 900;
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+}
+.brand-name span {
+  color: var(--accent);
+  text-shadow: var(--text-glow);
+}
+.brand-suffix {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding-left: 0.65rem;
+  border-left: 1px solid var(--border);
+}
+
+/* Masaüstünde sıra: marka · menü · tema düğmesi */
+.nav-menu {
+  order: 1;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.nav-actions {
+  order: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.nav-links a {
+  position: relative;
+  display: inline-block;
+  padding-block: 0.35rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+/* Üstüne gelince ya da bulunduğun sayfaysa altta parlayan çizgi */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 8px rgb(var(--accent-rgb) / 0.8);
+  transform: scaleX(0);
+  transition: transform 0.2s ease;
+}
+.nav-links a:hover,
+.nav-links a[aria-current="page"] {
+  color: var(--text);
+}
+.nav-links a:hover::after,
+.nav-links a[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+/* Kare ikon düğmesi (tema) */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  color: var(--text-muted);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.icon-btn:hover {
+  color: var(--accent);
+  border-color: rgb(var(--accent-rgb) / 0.55);
+  box-shadow: var(--glow-sm);
+}
+
+/* Dil düğmesi (TR / EN): seçili dil düz cyan zemin */
+.lang-switch {
+  display: inline-flex;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-1);
+}
+.lang-switch button {
+  min-width: 38px;
+  min-height: 32px;
+  padding: 0 8px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: transparent;
+  border: 0;
+  border-radius: 7px;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+.lang-switch button:hover {
+  color: var(--text);
+}
+.lang-switch button[aria-pressed="true"] {
+  color: var(--on-accent);
+  background: var(--accent);
+}
+
+/* Hamburger butonu: yalnızca dar ekranlarda görünür */
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.nav-toggle-bar {
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--text);
+  transition:
+    transform 0.25s ease,
+    opacity 0.2s ease;
+}
+/* Açıkken üç çizgi "X" şekline döner */
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 860px) {
+  .nav-actions {
+    margin-left: auto;
+  }
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  /* Menü, hamburgerle açılan bir panele dönüşür */
+  .nav-menu {
+    position: absolute;
+    top: var(--nav-h);
+    left: 0;
+    right: 0;
+    margin: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    padding: 1rem var(--gutter) 1.5rem;
+    background: var(--menu-bg);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease,
+      visibility 0s linear 0.2s;
+  }
+  .site-header.is-open .nav-menu {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .nav-links a {
+    display: block;
+    padding: 0.85rem 0.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-links a::after {
+    display: none;
+  }
+  .nav-menu .lang-switch {
+    align-self: flex-start;
+  }
+  .nav-menu .btn {
+    width: 100%;
+  }
+}
+
+/* Çok dar ekranlarda "Kütüphane" yazısı gizlenir, marka tek satırda kalsın */
+@media (max-width: 400px) {
+  .brand-suffix {
+    display: none;
+  }
+}
+
+/* Alt bilgi ------------------------------------------------------------------------ */
+.site-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+  background: var(--footer-bg);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 2rem;
+  padding-block: 3rem 2rem;
+}
+
+.footer-brand .brand {
+  margin-bottom: 0.75rem;
+}
+.footer-brand p {
+  max-width: 40ch;
+  margin: 0;
+}
+
+.footer-title {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  margin-bottom: 0.9rem;
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.footer-links a {
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  padding-block: 1.25rem 1.75rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+.footer-bottom p {
+  margin: 0 0 0.35rem;
+}
+.footer-legal {
+  opacity: 0.8;
+}
+
+@media (max-width: 700px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+  }
+}

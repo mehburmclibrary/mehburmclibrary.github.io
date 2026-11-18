@@ -1,0 +1,3 @@
+# Arama motoru botları sitenin tamamını tarayabilir
+User-agent: *
+Allow: /

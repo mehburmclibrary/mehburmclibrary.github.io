@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="tr" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title data-i18n="meta.notFoundTitle">Sayfa bulunamadı · MehburMC Kütüphane</title>
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#05070a" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <!-- Tema, sayfa çizilmeden önce ayarlanır. Mantığı src/lib/theme.ts ile aynıdır. -->
+    <script>
+      (function () {
+        var t = null;
+        try {
+          t = localStorage.getItem("mmclib.theme");
+        } catch (e) {}
+        if (t !== "light" && t !== "dark") {
+          t =
+            window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches
+              ? "light"
+              : "dark";
+        }
+        document.documentElement.setAttribute("data-theme", t);
+      })();
+    </script>
+    <script type="module" src="/src/pages/not-found.ts"></script>
+  </head>
+  <body>
+    <header data-shell="header"></header>
+
+    <main id="main" class="container error-page">
+      <div>
+        <p class="error-code neon-text" aria-hidden="true">404</p>
+        <h1 data-i18n="notFound.title">Sayfa bulunamadı</h1>
+        <p class="section-lead is-centered" data-i18n="notFound.text">
+          Aradığın sayfa taşınmış ya da hiç var olmamış olabilir.
+        </p>
+        <a class="btn btn-primary" href="/" data-i18n="notFound.home">Ana sayfaya dön</a>
+      </div>
+    </main>
+
+    <footer data-shell="footer"></footer>
+  </body>
+</html>

@@ -1,0 +1,102 @@
+/* Ana sayfa (Faz 1: tanıtım + "yakında"). Faz 3'te kütüphane listesi buraya gelecek. */
+
+.hero {
+  padding-block: clamp(3rem, 8vw, 5.5rem) var(--section-space);
+  text-align: center;
+}
+.hero-icon {
+  width: clamp(88px, 18vw, 120px);
+  height: auto;
+  margin: 0 auto 1.5rem;
+  border-radius: 24px;
+  box-shadow: var(--glow-md);
+}
+.hero h1 {
+  margin-top: 1rem;
+  font-family: var(--font-brand);
+  font-weight: 900;
+  font-size: clamp(2.1rem, 7vw, 4rem);
+  letter-spacing: 0.03em;
+  overflow-wrap: anywhere;
+}
+.hero h1 .hero-suffix {
+  display: block;
+  margin-top: 0.15em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.6em;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.hero .section-lead {
+  margin-inline: auto;
+}
+.hero-soon {
+  display: inline-block;
+  margin: 0.5rem 0 2rem;
+  padding: 0.6rem 1rem;
+  color: var(--text);
+  background: var(--surface-1);
+  border: 1px dashed rgb(var(--accent-rgb) / 0.5);
+  border-radius: var(--radius);
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.85rem;
+}
+/* Telefonda butonlar alt alta ve eşit genişlikte */
+@media (max-width: 520px) {
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-actions .btn {
+    width: min(100%, 320px);
+  }
+}
+
+/* İçerik türleri ve "nasıl çalışır" kartları */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+.card h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.4rem;
+  margin-bottom: 0.4em;
+}
+.card h3 .icon {
+  color: var(--accent);
+}
+.card p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.steps {
+  counter-reset: step;
+}
+.steps .card h3::before {
+  counter-increment: step;
+  content: counter(step);
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  font-family: var(--font-brand);
+  font-size: 0.95rem;
+  color: var(--on-accent);
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: var(--glow-sm);
+}
+.steps {
+  list-style: none;
+  padding: 0;
+}

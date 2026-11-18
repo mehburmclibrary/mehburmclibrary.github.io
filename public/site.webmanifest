@@ -1,0 +1,14 @@
+{
+  "name": "MehburMC Kütüphane",
+  "short_name": "MMC Kütüphane",
+  "description": "MehburMC topluluğunun paylaştığı modlar, modpack'ler, resource pack'ler ve shader'lar.",
+  "lang": "tr",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#05070a",
+  "theme_color": "#05070a",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
