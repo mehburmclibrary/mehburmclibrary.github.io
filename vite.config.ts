@@ -7,6 +7,8 @@ import { defineConfig } from "vite";
 const pages = {
   main: resolve(import.meta.dirname, "index.html"),
   notFound: resolve(import.meta.dirname, "404.html"),
+  library: resolve(import.meta.dirname, "library/index.html"),
+  item: resolve(import.meta.dirname, "item/index.html"),
 };
 
 export default defineConfig({
