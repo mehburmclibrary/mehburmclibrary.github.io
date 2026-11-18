@@ -5,6 +5,8 @@ Biçim [Keep a Changelog](https://keepachangelog.com/tr/1.1.0/) temellidir; sür
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-18
+
 ### Eklendi
 
 - Kütüphane sayfası: onaylı modlar, modpack'ler, resource pack'ler ve shader'lar giriş yapmadan
@@ -22,5 +24,6 @@ Biçim [Keep a Changelog](https://keepachangelog.com/tr/1.1.0/) temellidir; sür
 - Açık/koyu tema ve Türkçe/İngilizce dil anahtarı eklendi; seçimler tarayıcıda hatırlanıyor.
 - Her değişiklikte testler GitHub'da otomatik çalışıyor, geçerse site kendiliğinden yayınlanıyor.
 
-[Unreleased]: https://github.com/mehburmclibrary/mehburmclibrary.github.io/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/mehburmclibrary/mehburmclibrary.github.io/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/mehburmclibrary/mehburmclibrary.github.io/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/mehburmclibrary/mehburmclibrary.github.io/releases/tag/v0.1.0
