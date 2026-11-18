@@ -21,3 +21,10 @@ export function formatDate(iso: string): string {
   if (Number.isNaN(d.getTime())) return "";
   return new Intl.DateTimeFormat(locale(), { dateStyle: "medium" }).format(d);
 }
+
+/** Tarih + saat (ör. ban bitişi): "3 Kas 2026 14:30" / "3 Nov 2026, 14:30". */
+export function formatDateTime(iso: string): string {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return "";
+  return new Intl.DateTimeFormat(locale(), { dateStyle: "medium", timeStyle: "short" }).format(d);
+}

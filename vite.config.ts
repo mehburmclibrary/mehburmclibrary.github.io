@@ -9,6 +9,7 @@ const pages = {
   notFound: resolve(import.meta.dirname, "404.html"),
   library: resolve(import.meta.dirname, "library/index.html"),
   item: resolve(import.meta.dirname, "item/index.html"),
+  account: resolve(import.meta.dirname, "account/index.html"),
 };
 
 export default defineConfig({

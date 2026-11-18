@@ -39,12 +39,15 @@ Launcher v0.33.0, `supabase/library_web.sql` (MehburMC-Launcher PR #10). Supabas
 - Yükleniyor / boş / hata durumları, mobil uyum, iki dil
 - Supabase indirme kotası (egress): README'de nasıl izleneceği yazıyor
 
-## Faz 4: Hesap sistemi
+## Faz 4: Hesap sistemi ✅
 
-- E-posta + şifre ile giriş, kayıt, 6 haneli kodla e-posta onayı, şifre sıfırlama, çıkış
-- Google ile giriş
-- Hesap adı (oyuncu adı) kontrolü / oluşturma
-- Banlı kullanıcıya durumunu gösterme
+- `/account/`: e-posta + şifre ile giriş, kayıt, 6 haneli kodla e-posta onayı, şifre sıfırlama
+  (kod + yeni şifre), çıkış (yalnızca bu tarayıcıdan). Kurallar launcher ile aynı (şifre ≥ 8)
+- Google ile giriş (PKCE)
+- Hesap adları: listeleme (`my_account_names()`, launcher reposunda `supabase/site_account.sql`)
+  ve ekleme (`claim_name`)
+- Banlı kullanıcıya ban bitişi ve sebebi gösteriliyor; yönetici rozeti
+- Üst menüde "Giriş yap / Hesabım" bağlantısı
 
 ## Faz 5: Mod yükleme (v1.0.0)
 
