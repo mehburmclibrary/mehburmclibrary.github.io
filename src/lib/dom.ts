@@ -48,6 +48,8 @@ const ICONS = {
   upload: '<path d="M12 21V9M7 14l5-5 5 5M5 3h14"/>',
   flag: '<path d="M4 22V4M4 4h13l-2 4 2 4H4"/>',
   trash: '<path d="M3 6h18M8 6V4h8v2M6 6l1 15h10l1-15"/>',
+  external:
+    '<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>',
 } as const;
 
 export type IconName = keyof typeof ICONS;

@@ -2,11 +2,13 @@
 // ipucunu ve İndir düğmesini çizer. Veri kaynağı parametre olarak verilir (testlerde sahtesi).
 import { itemTags, kindBadge, kindLabel, notice } from "../components/item-card";
 import { h, icon } from "../lib/dom";
+import { LINKS } from "../lib/links";
 import { formatBytes, formatDate } from "../lib/format";
 import { onLangChange, t, tf } from "../lib/i18n";
 import {
   displayGameVersions,
   itemIdFromParams,
+  launcherLink,
   loaderName,
   type LibraryItem,
 } from "../lib/library";
@@ -23,6 +25,13 @@ export interface ItemSource {
 
 /** Dosya indirmesini başlatır (testlerde değiştirilebilsin diye ayrı). */
 export type Navigate = (url: string) => void;
+
+/**
+ * "Launcher'da aç"a basıldıktan sonra beklenen süre. Launcher açılırsa tarayıcı penceresi
+ * odağı kaybeder; bu süre içinde kaybetmezse launcher büyük ihtimalle kurulu ya da güncel
+ * değildir (tarayıcılar bir uygulamanın kurulu olup olmadığını söylemez).
+ */
+export const LAUNCHER_WAIT_MS = 2500;
 
 const INSTALL_KEYS: Record<LibraryItem["kind"], MessageKey> = {
   mod: "item.installMod",
@@ -54,7 +63,33 @@ export function initItemDetail(
   let downloading = false;
   let downloadFailed = false;
   let copied = false;
+  let launcherHint = false;
+  let launcherTimer: ReturnType<typeof setTimeout> | undefined;
   let report: ReportWidget | null = null;
+
+  // Bağlantıya tıklanınca tarayıcı launcher'ı açmayı dener (bağlantının kendisi, burada
+  // yalnızca açılıp açılmadığı izlenir).
+  function watchLauncher() {
+    clearTimeout(launcherTimer);
+    if (launcherHint) {
+      launcherHint = false;
+      render();
+    }
+    let left = false;
+    const away = () => {
+      left = true;
+    };
+    const onVisibility = () => document.visibilityState === "hidden" && away();
+    window.addEventListener("blur", away);
+    document.addEventListener("visibilitychange", onVisibility);
+    launcherTimer = setTimeout(() => {
+      window.removeEventListener("blur", away);
+      document.removeEventListener("visibilitychange", onVisibility);
+      if (left) return;
+      launcherHint = true;
+      render();
+    }, LAUNCHER_WAIT_MS);
+  }
 
   async function download() {
     if (!item || downloading) return;
@@ -101,6 +136,14 @@ export function initItemDetail(
     dl.disabled = downloading;
     dl.addEventListener("click", () => void download());
 
+    const open = h(
+      "a",
+      { class: "btn btn-ghost btn-lg", href: launcherLink(it.id), "data-focus": "launcher" },
+      icon("external"),
+      h("span", {}, t("item.openInLauncher")),
+    );
+    open.addEventListener("click", watchLauncher);
+
     const copyBtn = h(
       "button",
       {
@@ -133,6 +176,32 @@ export function initItemDetail(
         "div",
         { class: "item-actions" },
         dl,
+        open,
+        launcherHint
+          ? h(
+              "div",
+              { class: "launcher-tip launcher-hint", role: "status" },
+              icon("info", "icon-sm"),
+              h(
+                "div",
+                {},
+                h("p", { class: "launcher-hint-title" }, t("item.launcherHintTitle")),
+                h("p", {}, t("item.launcherHintText")),
+                h(
+                  "a",
+                  {
+                    class: "btn btn-primary btn-sm",
+                    href: LINKS.launcherSite,
+                    target: "_blank",
+                    rel: "noopener",
+                  },
+                  icon("download"),
+                  h("span", {}, t("item.launcherHintCta")),
+                  h("span", { class: "sr-only" }, t("external")),
+                ),
+              ),
+            )
+          : null,
         downloadFailed
           ? h("p", { class: "form-error", role: "alert" }, t("item.downloadError"))
           : null,

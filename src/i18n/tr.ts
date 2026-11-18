@@ -119,7 +119,12 @@ export const tr = {
     "Dosyayı resourcepacks klasörüne koy, sonra oyunda Seçenekler → Kaynak Paketleri'nden aç.",
   "item.installShader": "Dosyayı shaderpacks klasörüne koy. Iris ya da OptiFine gerekir.",
   "item.launcherTip":
-    "MehburMC Launcher kullanıyorsan bu içeriği launcher'daki Kütüphane sayfasından tek tıkla kurabilirsin.",
+    "MehburMC Launcher kullanıyorsan \"Launcher'da aç\" düğmesiyle bu içerik launcher'ın Kütüphane sekmesinde açılır; oradan tek tıkla kurabilirsin.",
+  "item.openInLauncher": "Launcher'da aç",
+  "item.launcherHintTitle": "Launcher açılmadı mı?",
+  "item.launcherHintText":
+    "MehburMC Launcher kurulu değilse ya da güncel değilse önce indir veya güncelle, sonra düğmeye tekrar bas.",
+  "item.launcherHintCta": "Launcher'ı indir",
   "item.notFoundTitle": "İçerik bulunamadı",
   "item.notFoundText": "Bu içerik kaldırılmış ya da henüz onaylanmamış olabilir.",
   "item.loading": "İçerik yükleniyor…",

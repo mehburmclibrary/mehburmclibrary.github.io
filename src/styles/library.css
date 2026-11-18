@@ -451,6 +451,23 @@
   margin-top: 0.2em;
   color: var(--accent);
 }
+/* "Launcher açılmadı mı?" kutusu: düğmelerin altında tam satır */
+.launcher-hint {
+  flex-basis: 100%;
+  margin: 0;
+}
+.launcher-hint p {
+  margin: 0 0 0.5rem;
+}
+.launcher-hint .launcher-hint-title {
+  margin-bottom: 0.25rem;
+  font-weight: 700;
+}
+/* Kutunun simge rengi düğmenin içindeki simgeye geçmesin (düğme renginde kaybolurdu) */
+.launcher-hint .btn .icon {
+  margin-top: 0;
+  color: inherit;
+}
 
 .item-facts dl {
   margin: 0;

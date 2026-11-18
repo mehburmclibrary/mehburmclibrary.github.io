@@ -121,7 +121,12 @@ export const en: Record<MessageKey, string> = {
     "Put the file in the resourcepacks folder, then turn it on in-game under Options → Resource Packs.",
   "item.installShader": "Put the file in the shaderpacks folder. Requires Iris or OptiFine.",
   "item.launcherTip":
-    "If you use MehburMC Launcher, you can install this with one click from the launcher's Library page.",
+    'If you use MehburMC Launcher, "Open in launcher" shows this item in the launcher\'s Library tab, where you can install it with one click.',
+  "item.openInLauncher": "Open in launcher",
+  "item.launcherHintTitle": "Didn't the launcher open?",
+  "item.launcherHintText":
+    "If MehburMC Launcher isn't installed or isn't up to date, download or update it first, then press the button again.",
+  "item.launcherHintCta": "Download the launcher",
   "item.notFoundTitle": "Item not found",
   "item.notFoundText": "This item may have been removed or not approved yet.",
   "item.loading": "Loading item…",
