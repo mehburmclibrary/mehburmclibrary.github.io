@@ -49,13 +49,15 @@ Launcher v0.33.0, `supabase/library_web.sql` (MehburMC-Launcher PR #10). Supabas
 - Banlı kullanıcıya ban bitişi ve sebebi gösteriliyor; yönetici rozeti
 - Üst menüde "Giriş yap / Hesabım" bağlantısı
 
-## Faz 5: Mod yükleme (v1.0.0)
+## Faz 5: Mod yükleme ✅ (v1.0.0)
 
-- Sürükle-bırak dosya seçimi
-- Dosyadan ad / sürüm / loader / Minecraft sürümünü otomatik okuma (4 içerik türü için)
-- Basit güvenlik kontrolü; yükleme "web'den geldi" işaretiyle admin onayına düşer
-- "Yüklediklerim": beklemede / onaylandı / reddedildi + admin notu
-- Yüklemeyi geri çekme, şikâyet etme
+- `/upload/`: tür seçimi, sürükle-bırak, dosyadan ad / sürüm / loader / Minecraft sürümünü okuma
+  (4 içerik türü), yükleyen adı seçimi, uyarıları onaylama
+- Güvenlik kontrolü: "basit" yerine launcher'ın tarayıcısının birebir karşılığı (`src/lib/scan/`,
+  Web Worker'da). Yükleme `source = web` ile admin onayına düşer
+- `/uploads/` "Yüklediklerim": onay bekliyor / yayında / reddedildi + yönetici notu, geri çekme
+  (kayıt ve dosya silinir)
+- İçerik sayfasında şikâyet (sebep + not)
 
 ## Faz 6: "Launcher'da aç" (launcher reposu)
 

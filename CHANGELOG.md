@@ -7,6 +7,13 @@ Biçim [Keep a Changelog](https://keepachangelog.com/tr/1.1.0/) temellidir; sür
 
 ### Eklendi
 
+- Siteden içerik yükleme: tür seç, dosyayı sürükle-bırak; dosya MehburMC Launcher'daki kurallarla
+  otomatik kontrol edilir, sonra yöneticilerin onayına düşer.
+- "Yüklediklerim" sayfası: yüklemelerin onay durumu, yönetici notları ve geri çekme.
+- İçerik sayfasında "Şikâyet et".
+
+### Eklendi
+
 - Hesap sayfası: MehburMC Launcher'daki hesapla giriş, kayıt (e-postaya gelen 6 haneli kodla),
   şifre sıfırlama ve Google ile giriş. Banlı hesaplar ban süresini ve sebebini görüyor.
 - Hesap sayfasında hesap adları listeleniyor ve yeni ad eklenebiliyor.
