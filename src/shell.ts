@@ -4,6 +4,7 @@
 import iconUrl from "./assets/icon-64.webp";
 import { applyTranslations, currentLang, initI18n, setLang, t, type Lang } from "./lib/i18n";
 import { LINKS } from "./lib/links";
+import { AUTH_EVENT, hasStoredSession } from "./lib/session-hint";
 import { currentTheme, initTheme, onThemeChange, toggleTheme, type Theme } from "./lib/theme";
 
 const ICON_SUN = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>`;
@@ -37,6 +38,7 @@ function headerHtml(): string {
       <nav class="nav-menu" id="nav-menu" data-i18n-attr="aria-label:nav.label">
         <ul class="nav-links">
           <li><a href="/library/" data-nav-link data-i18n="nav.library"></a></li>
+          <li><a href="/account/" data-nav-link data-account-link></a></li>
         </ul>
         <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.label">
           <button type="button" lang="tr" data-lang="tr">TR</button>
@@ -135,6 +137,20 @@ function setupScrollState(header: HTMLElement): void {
   window.addEventListener("scroll", update, { passive: true });
 }
 
+/** "Giriş yap" ya da (tarayıcıda oturum varsa) "Hesabım". */
+function setupAccountLink(header: HTMLElement): void {
+  const link = header.querySelector<HTMLAnchorElement>("[data-account-link]");
+  if (!link) return;
+  const render = () => {
+    link.dataset.i18n = hasStoredSession() ? "nav.account" : "nav.signIn";
+    applyTranslations(link.parentElement ?? link);
+  };
+  render();
+  window.addEventListener(AUTH_EVENT, render);
+  // Başka sekmede giriş / çıkış yapılınca da güncellenir
+  window.addEventListener("storage", render);
+}
+
 /** Bulunduğumuz sayfanın menü bağlantısını işaretler. */
 function markCurrentPage(header: HTMLElement): void {
   header.querySelectorAll<HTMLAnchorElement>("[data-nav-link]").forEach((a) => {
@@ -166,6 +182,7 @@ export function mountShell(): void {
     setupLangSwitch(header);
     setupMobileMenu(header);
     setupScrollState(header);
+    setupAccountLink(header);
     markCurrentPage(header);
   }
 }

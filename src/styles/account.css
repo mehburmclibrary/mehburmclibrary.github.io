@@ -1,0 +1,237 @@
+/* Hesap sayfası: giriş / kayıt / kod / şifre formları ve "Hesabım". */
+
+.auth-wrap {
+  max-width: 480px;
+  margin-inline: auto;
+}
+.auth-card {
+  padding: clamp(1.25rem, 4vw, 2rem);
+}
+.auth-card:hover {
+  transform: none;
+}
+.auth-title {
+  font-size: clamp(1.8rem, 6vw, 2.4rem);
+  margin-bottom: 0.3em;
+}
+.auth-title:focus {
+  outline: none;
+}
+.auth-lead {
+  margin: 0 0 1.5rem;
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+
+/* Form alanları */
+.auth-form {
+  display: grid;
+  gap: 1rem;
+}
+.auth-form .field label,
+.name-form label {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.auth-form input,
+.name-form input {
+  width: 100%;
+  min-height: 46px;
+  padding: 0.6rem 0.85rem;
+  font: inherit;
+  color: var(--text);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.auth-form input:focus-visible,
+.name-form input:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: var(--glow-sm);
+}
+#a-code {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  letter-spacing: 0.3em;
+}
+.field-hint {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+.show-password {
+  align-self: flex-end;
+  font-size: 0.85rem;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* Bağlantı gibi görünen düğme */
+.link-btn {
+  padding: 0.2rem 0;
+  font: inherit;
+  font-weight: 600;
+  color: var(--accent);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+}
+.link-btn:hover {
+  text-decoration: underline;
+}
+.link-btn:disabled {
+  color: var(--text-muted);
+  cursor: default;
+  text-decoration: none;
+}
+
+.auth-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+.auth-links p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+/* Google düğmesi + "ya da" ayırıcı */
+.auth-alt {
+  margin-bottom: 1.25rem;
+}
+.google-btn {
+  color: var(--text);
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+.google-icon {
+  width: 1.2em;
+  height: 1.2em;
+}
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.25rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* Hata ve bilgi mesajları */
+.form-error,
+.form-info {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0.7rem 0.85rem;
+  font-weight: 600;
+  border-radius: var(--radius);
+}
+.form-error {
+  color: var(--danger);
+  background: rgb(255 59 92 / 0.08);
+  border: 1px solid rgb(255 59 92 / 0.4);
+}
+.form-info {
+  color: var(--success);
+  background: rgb(0 255 163 / 0.07);
+  border: 1px solid rgb(0 255 163 / 0.35);
+}
+.form-error .icon,
+.form-info .icon {
+  margin-top: 0.2em;
+}
+
+/* Hesabım */
+.account-email {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.5rem;
+  margin: 0 0 1.25rem;
+}
+.rank-badge {
+  margin-left: 0.25rem;
+}
+.notice-ban {
+  margin: 0 0 1.25rem;
+  padding: 1rem 1.1rem;
+  background: rgb(255 59 92 / 0.08);
+  border: 1px solid rgb(255 59 92 / 0.45);
+  border-radius: var(--radius);
+}
+.notice-ban h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.4rem;
+  font-size: 1.3rem;
+  color: var(--danger);
+}
+.notice-ban p {
+  margin: 0.25rem 0 0;
+  overflow-wrap: anywhere;
+}
+.account-section {
+  margin: 0.5rem 0 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+.account-section h2 {
+  font-size: 1.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.4rem;
+}
+.account-section > p {
+  margin: 0 0 0.85rem;
+}
+.name-list {
+  margin-bottom: 1rem;
+}
+.name-list .tag {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+.name-form {
+  display: grid;
+  gap: 0.4rem;
+}
+.name-row {
+  display: flex;
+  gap: 0.5rem;
+}
+.name-row input {
+  flex: 1;
+  min-width: 0;
+}
+.name-row .btn {
+  flex-shrink: 0;
+  min-height: 46px;
+}
+.account-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.25rem;
+}

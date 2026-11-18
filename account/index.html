@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="tr" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title data-i18n="meta.accountFallbackTitle">Hesap · MehburMC Kütüphane</title>
+    <meta
+      name="description"
+      data-i18n-attr="content:meta.accountDescription"
+      content="MehburMC hesabınla giriş yap ya da kayıt ol. Aynı hesap MehburMC Launcher'da da geçerli."
+    />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#05070a" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <!-- Tema, sayfa çizilmeden önce ayarlanır (bkz. index.html) -->
+    <script>
+      (function () {
+        var t = null;
+        try {
+          t = localStorage.getItem("mmclib.theme");
+        } catch (e) {}
+        if (t !== "light" && t !== "dark") {
+          t =
+            window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches
+              ? "light"
+              : "dark";
+        }
+        document.documentElement.setAttribute("data-theme", t);
+      })();
+    </script>
+    <script type="module" src="/src/pages/account.ts"></script>
+  </head>
+  <body>
+    <header data-shell="header"></header>
+
+    <main id="main">
+      <section class="section page-section">
+        <div class="container">
+          <div class="auth-wrap" data-account aria-busy="true">
+            <p class="results-status" role="status" data-i18n="auth.loading">Yükleniyor…</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer data-shell="footer"></footer>
+  </body>
+</html>
