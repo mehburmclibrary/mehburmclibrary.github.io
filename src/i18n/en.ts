@@ -45,6 +45,9 @@ export const en: Record<MessageKey, string> = {
   "how.reviewText": "Admins review every upload; nothing is published without approval.",
   "how.share": "Share",
   "how.shareText": "Approved content becomes public in the launcher and on this site.",
+  "promo.launcherText":
+    "Install anything from the library with one click in the launcher. Lightweight and ad-free, with mods, skins and friends in one window.",
+  "promo.launcherCta": "Go to the launcher site",
 
   "meta.libraryTitle": "Library · MehburMC Library",
   "meta.libraryDescription":

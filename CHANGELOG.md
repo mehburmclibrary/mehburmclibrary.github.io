@@ -5,6 +5,10 @@ Biçim [Keep a Changelog](https://keepachangelog.com/tr/1.1.0/) temellidir; sür
 
 ## [Unreleased]
 
+### Eklendi
+
+- Ana sayfada MehburMC Launcher sitesine giden bir tanıtım kartı.
+
 ## [1.0.0] - 2026-11-18
 
 ### Eklendi
