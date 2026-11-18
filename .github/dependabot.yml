@@ -9,6 +9,11 @@ updates:
       dev-tools:
         patterns: ["*"]
         update-types: [minor, patch]
+    ignore:
+      # @types/node, kullanılan Node sürümüyle (24) aynı major'da kalmalı;
+      # Node yükseltildiğinde bu kural da elle güncellenir
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: github-actions
     directory: /
