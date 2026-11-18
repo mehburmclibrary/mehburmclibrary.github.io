@@ -29,6 +29,7 @@
   },
   "packageManager": "pnpm@12.18.0",
   "dependencies": {
-    "@supabase/supabase-js": "2.119.0"
+    "@supabase/supabase-js": "2.119.0",
+    "fflate": "0.8.3"
   }
 }
