@@ -59,19 +59,28 @@ Launcher v0.33.0, `supabase/library_web.sql` (MehburMC-Launcher PR #10). Supabas
   (kayıt ve dosya silinir)
 - İçerik sayfasında şikâyet (sebep + not)
 
-## Faz 6: "Launcher'da aç" (launcher reposu) — yapılıyor
+## Faz 6: "Launcher'da aç" (launcher reposu) ✅
 
 - Launcher'a `mehburmc://library/<id>` deep link desteği (launcher PR #15, karar K112). Bağlantı
   yalnızca içeriği launcher'ın Kütüphane sekmesinde gösterir, kendiliğinden kurulum yapmaz
 - Sitede "Launcher'da aç" düğmesi (`src/features/item-detail.ts`). Tarayıcılar bir uygulamanın kurulu
   olup olmadığını söylemediği için: düğmeye basıldıktan sonra 2,5 sn içinde tarayıcı penceresi odağı
   kaybetmezse (launcher açılmadıysa) "Launcher açılmadı mı?" kutusu indirme sayfasını önerir
-- Yeni launcher sürümü gerektirir (deep link desteği olan ilk sürüm)
+- Launcher v0.35.0 ile yayınlandı (kurulum programı `mehburmc://` adresini Windows'a kaydeder)
 
-## Faz 7: Cilalama
+## Faz 7: Cilalama ✅
 
-- SEO: sitemap, paylaşım önizleme görselleri
-- Erişilebilirlik ve performans kontrolleri
+- SEO: derlemede üretilen `sitemap.xml` (sabit sayfalar + onaylı her içerik, onay tarihiyle;
+  `robots.txt` gösterir), paylaşım önizlemesi (Open Graph / Twitter etiketleri,
+  `public/og-image.jpg`, kaynağı `scripts/og-image.html`), içerik sayfasında kalıcı adres
+  (canonical) ve içeriğin kendi açıklaması
+- Erişilebilirlik: axe-core (WCAG 2.2 AA) 7 sayfada, açık/koyu tema, masaüstü/telefon: 0 ihlal.
+  Açık temanın vurgu rengi `#007c8a` → `#006d7a` (en açık zeminde 4.2:1 → 5.1:1), kütüphane
+  listesine görünmez "Sonuçlar" başlığı (h1 → h3 atlaması)
+- Performans (Lighthouse, yerel önizleme): telefonda 89–90, masaüstünde 99–100; erişilebilirlik,
+  en iyi uygulamalar ve SEO 100. İçerik sayfasındaki yerleşim kayması (CLS) 0,81 → 0,02
+- Sitemap yalnızca site yeniden yayınlandığında güncellenir; yeni onaylanan içerik bir sonraki
+  yayına kadar sitemap'te yoktur (sayfalar yine de kütüphane bağlantılarından bulunur)
 
 ## Bilinen riskler
 

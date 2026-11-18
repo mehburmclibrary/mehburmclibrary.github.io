@@ -82,6 +82,11 @@ GitHub Pages'e yayınlar. `main`'e doğrudan push kapalıdır, değişiklikler P
 Yayın derlemesi Supabase ayarlarını repo değişkenlerinden alır (Settings → Secrets and variables →
 Actions → Variables: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`).
 
+Derleme sırasında `sitemap.xml` de üretilir (`vite.config.ts` → `src/lib/sitemap.ts`): sabit
+sayfalar ve onaylı her içerik. Supabase'e ulaşılamazsa derleme bozulmaz, yalnızca sabit sayfalar
+yazılır. Sitemap her yayında yenilenir. Paylaşım önizleme görseli `public/og-image.jpg`; kaynağı
+`scripts/og-image.html` (dosyadaki açıklamaya bakın).
+
 ## Dosya tarayıcısı
 
 Yüklenecek dosya, gönderilmeden önce tarayıcıda (arka planda, Web Worker ile) kontrol edilir.
