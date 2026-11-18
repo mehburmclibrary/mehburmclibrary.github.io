@@ -43,6 +43,9 @@ export const tr = {
   "how.reviewText": "Yöneticiler her yüklemeyi inceler; onaylanmayan içerik yayınlanmaz.",
   "how.share": "Paylaş",
   "how.shareText": "Onaylanan içerik hem launcher'da hem bu sitede herkese açılır.",
+  "promo.launcherText":
+    "Kütüphanedeki her içeriği launcher'dan tek tıkla kur. Hafif, reklamsız; modlar, skinler ve arkadaşların tek pencerede.",
+  "promo.launcherCta": "Launcher sitesine git",
 
   "meta.libraryTitle": "Kütüphane · MehburMC Kütüphane",
   "meta.libraryDescription":
