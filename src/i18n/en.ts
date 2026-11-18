@@ -64,6 +64,7 @@ export const en: Record<MessageKey, string> = {
   "kind.resourcepack": "Resource pack",
   "kind.shader": "Shader",
   "library.title": "Library",
+  "library.resultsHeading": "Results",
   "library.lead": "All approved content is here. Search, filter and download without signing in.",
   "library.filters": "Filters",
   "library.search": "Search",

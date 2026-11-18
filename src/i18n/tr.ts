@@ -62,6 +62,7 @@ export const tr = {
   "kind.resourcepack": "Resource pack",
   "kind.shader": "Shader",
   "library.title": "Kütüphane",
+  "library.resultsHeading": "Sonuçlar",
   "library.lead":
     "Onaylanmış bütün içerik burada. Giriş yapmadan arayabilir, filtreleyebilir ve indirebilirsin.",
   "library.filters": "Filtreler",

@@ -339,6 +339,10 @@
 .footer-legal {
   opacity: 0.8;
 }
+/* Açık zeminde soluklaştırılınca okunmuyor (3.8:1); orada tam renk */
+:root[data-theme="light"] .footer-legal {
+  opacity: 1;
+}
 
 @media (max-width: 700px) {
   .footer-top {
