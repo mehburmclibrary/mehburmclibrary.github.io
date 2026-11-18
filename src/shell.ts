@@ -38,6 +38,7 @@ function headerHtml(): string {
       <nav class="nav-menu" id="nav-menu" data-i18n-attr="aria-label:nav.label">
         <ul class="nav-links">
           <li><a href="/library/" data-nav-link data-i18n="nav.library"></a></li>
+          <li><a href="/upload/" data-nav-link data-i18n="nav.upload"></a></li>
           <li><a href="/account/" data-nav-link data-account-link></a></li>
         </ul>
         <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.label">

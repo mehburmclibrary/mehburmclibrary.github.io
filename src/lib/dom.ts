@@ -45,6 +45,9 @@ const ICONS = {
   alert: '<circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 17h.01"/>',
   back: '<path d="M19 12H5M12 19l-7-7 7-7"/>',
   info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/>',
+  upload: '<path d="M12 21V9M7 14l5-5 5 5M5 3h14"/>',
+  flag: '<path d="M4 22V4M4 4h13l-2 4 2 4H4"/>',
+  trash: '<path d="M3 6h18M8 6V4h8v2M6 6l1 15h10l1-15"/>',
 } as const;
 
 export type IconName = keyof typeof ICONS;

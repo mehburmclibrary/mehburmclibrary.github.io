@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="tr" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title data-i18n="meta.uploadsTitle">Yüklediklerim · MehburMC Kütüphane</title>
+    <meta
+      name="description"
+      data-i18n-attr="content:meta.uploadsDescription"
+      content="MehburMC Kütüphanesi'ne yüklediğin içerikler ve onay durumları."
+    />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#05070a" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <!-- Tema, sayfa çizilmeden önce ayarlanır (bkz. index.html) -->
+    <script>
+      (function () {
+        var t = null;
+        try {
+          t = localStorage.getItem("mmclib.theme");
+        } catch (e) {}
+        if (t !== "light" && t !== "dark") {
+          t =
+            window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches
+              ? "light"
+              : "dark";
+        }
+        document.documentElement.setAttribute("data-theme", t);
+      })();
+    </script>
+    <script type="module" src="/src/pages/uploads.ts"></script>
+  </head>
+  <body>
+    <header data-shell="header"></header>
+
+    <main id="main">
+      <section class="section page-section">
+        <div class="container">
+          <h1 class="page-title" data-i18n="uploads.title">Yüklediklerim</h1>
+          <p class="section-lead" data-i18n="uploads.lead">
+            Yüklediğin içerikler ve onay durumları. Bekleyen ya da yayındaki bir içeriği geri
+            çekebilirsin.
+          </p>
+          <div data-my-uploads aria-busy="true"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer data-shell="footer"></footer>
+  </body>
+</html>
