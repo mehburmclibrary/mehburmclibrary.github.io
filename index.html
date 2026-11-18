@@ -42,7 +42,7 @@
       <section class="hero">
         <div class="container">
           <img class="hero-icon" src="/src/assets/icon-128.webp" width="128" height="128" alt="" />
-          <span class="chip" data-i18n="home.chip">Yapım aşamasında</span>
+          <span class="chip" data-i18n="home.chip">Topluluk kütüphanesi</span>
           <h1>
             Mehbur<span class="neon-text">MC</span>
             <span class="hero-suffix neon-text" data-i18n="brand.suffix">Kütüphane</span>
@@ -51,12 +51,12 @@
             MehburMC topluluğunun paylaştığı modlar, modpack'ler, resource pack'ler ve shader'lar
             tek yerde. Launcher'dan ya da buradan yüklenen her içerik iki yerde birden görünür.
           </p>
-          <p class="hero-soon" data-i18n="home.soon">
-            Kütüphane listesi çok yakında burada olacak.
-          </p>
           <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="/library/" data-i18n="home.ctaBrowse">
+              Kütüphaneye göz at
+            </a>
             <a
-              class="btn btn-primary btn-lg"
+              class="btn btn-ghost btn-lg"
               href="https://mehburmc.github.io/"
               target="_blank"
               rel="noopener"
@@ -64,16 +64,27 @@
               <span data-i18n="home.ctaLauncher">Launcher'ı indir</span>
               <span class="sr-only" data-i18n="external">(yeni sekmede açılır)</span>
             </a>
-            <a
-              class="btn btn-ghost btn-lg"
-              href="https://github.com/mehburmclibrary/mehburmclibrary.github.io"
-              target="_blank"
-              rel="noopener"
-            >
-              <span data-i18n="home.ctaSource">Kaynak kod</span>
-              <span class="sr-only" data-i18n="external">(yeni sekmede açılır)</span>
-            </a>
           </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="latest-title">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2 class="section-title" id="latest-title" data-i18n="home.latestTitle">
+                Son eklenenler
+              </h2>
+              <p class="section-lead" data-i18n="home.latestLead">
+                Yöneticilerin en son onayladığı içerikler.
+              </p>
+            </div>
+            <a class="btn btn-ghost btn-sm" href="/library/" data-i18n="home.latestAll"
+              >Tümünü gör</a
+            >
+          </div>
+          <div data-notice></div>
+          <ul class="item-grid" data-latest aria-busy="true"></ul>
         </div>
       </section>
 
@@ -84,7 +95,7 @@
             Kütüphanede dört tür içerik paylaşılabilir.
           </p>
           <div class="card-grid">
-            <article class="card">
+            <a class="card card-link" href="/library/?kind=mod">
               <h3>
                 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M21 16V8l-9-5-9 5v8l9 5 9-5z" />
@@ -95,8 +106,8 @@
               <p data-i18n="kinds.modText">
                 Fabric, Quilt, Forge ve NeoForge için oyuna yeni özellikler katan .jar dosyaları.
               </p>
-            </article>
-            <article class="card">
+            </a>
+            <a class="card card-link" href="/library/?kind=modpack">
               <h3>
                 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="m12 2 10 5-10 5L2 7l10-5z" />
@@ -107,8 +118,8 @@
               <p data-i18n="kinds.modpackText">
                 Birlikte çalışacak şekilde hazırlanmış, tek seferde kurulan mod paketleri.
               </p>
-            </article>
-            <article class="card">
+            </a>
+            <a class="card card-link" href="/library/?kind=resourcepack">
               <h3>
                 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                   <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -120,8 +131,8 @@
               <p data-i18n="kinds.resourcepackText">
                 Dokuları, sesleri ve arayüzü değiştiren paketler.
               </p>
-            </article>
-            <article class="card">
+            </a>
+            <a class="card card-link" href="/library/?kind=shader">
               <h3>
                 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                   <path
@@ -134,7 +145,7 @@
               <p data-i18n="kinds.shaderText">
                 Işığı, gölgeleri ve suyu yeniden çizen görsel paketler.
               </p>
-            </article>
+            </a>
           </div>
         </div>
       </section>
