@@ -34,7 +34,12 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm lint
       - run: pnpm test
+      # Supabase bağlantısı: repo ayarlarındaki değişkenlerden (Settings → Secrets and variables
+      # → Actions → Variables). Anon anahtar herkese açıktır, sitenin koduna zaten girer.
       - run: pnpm exec vite build
+        env:
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
 
       - name: Derlenen siteyi yayına hazırla
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'

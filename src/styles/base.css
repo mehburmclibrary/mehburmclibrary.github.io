@@ -68,6 +68,11 @@ p {
   color: var(--selection-text);
 }
 
+/* hidden işaretli öğeler, display veren sınıflar (ör. .btn) olsa bile gizli kalır */
+[hidden] {
+  display: none !important;
+}
+
 /* Ekran okuyucular için görünmez ama okunabilir metin */
 .sr-only {
   position: absolute;

@@ -28,6 +28,16 @@ export function t(key: MessageKey): string {
   return dictionaries[current][key];
 }
 
+/** Değişkenli metin: "{n} içerik" gibi metinlerde {ad} yerine verilen değer yazılır. */
+export function tf(key: MessageKey, vars: Record<string, string | number>): string {
+  return t(key).replace(/\{(\w+)\}/g, (m, name: string) => (name in vars ? String(vars[name]) : m));
+}
+
+/** Tarih/sayı biçimleri için dilin bölge kodu. */
+export function locale(): string {
+  return current === "tr" ? "tr-TR" : "en-GB";
+}
+
 function isKey(key: string): key is MessageKey {
   return key in tr;
 }

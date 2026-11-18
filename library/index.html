@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="tr" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title data-i18n="meta.libraryTitle">Kütüphane · MehburMC Kütüphane</title>
+    <meta
+      name="description"
+      data-i18n-attr="content:meta.libraryDescription"
+      content="MehburMC topluluğunun onaylı modları, modpack'leri, resource pack'leri ve shader'ları. Ara, filtrele ve giriş yapmadan indir."
+    />
+    <meta name="theme-color" content="#05070a" />
+    <link rel="canonical" href="https://mehburmclibrary.github.io/library/" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <!-- Tema, sayfa çizilmeden önce ayarlanır (bkz. index.html) -->
+    <script>
+      (function () {
+        var t = null;
+        try {
+          t = localStorage.getItem("mmclib.theme");
+        } catch (e) {}
+        if (t !== "light" && t !== "dark") {
+          t =
+            window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches
+              ? "light"
+              : "dark";
+        }
+        document.documentElement.setAttribute("data-theme", t);
+      })();
+    </script>
+    <script type="module" src="/src/pages/library.ts"></script>
+  </head>
+  <body>
+    <header data-shell="header"></header>
+
+    <main id="main">
+      <section class="section page-section">
+        <div class="container">
+          <h1 class="page-title" data-i18n="library.title">Kütüphane</h1>
+          <p class="section-lead" data-i18n="library.lead">
+            Onaylanmış bütün içerik burada. Giriş yapmadan arayabilir, filtreleyebilir ve
+            indirebilirsin.
+          </p>
+
+          <form
+            class="filters"
+            role="search"
+            data-filters
+            data-i18n-attr="aria-label:library.filters"
+          >
+            <div class="field field-search">
+              <label for="f-q" data-i18n="library.search">Ara</label>
+              <input
+                id="f-q"
+                name="q"
+                type="search"
+                maxlength="64"
+                autocomplete="off"
+                spellcheck="false"
+                data-i18n-attr="placeholder:library.searchPlaceholder"
+              />
+            </div>
+
+            <fieldset class="field field-kinds">
+              <legend data-i18n="library.kind">Tür</legend>
+              <div class="kind-options">
+                <label
+                  ><input type="radio" name="kind" value="" checked /><span
+                    data-i18n="library.allKinds"
+                    >Tümü</span
+                  ></label
+                >
+                <label
+                  ><input type="radio" name="kind" value="mod" /><span data-i18n="kind.mod"
+                    >Mod</span
+                  ></label
+                >
+                <label
+                  ><input type="radio" name="kind" value="modpack" /><span data-i18n="kind.modpack"
+                    >Modpack</span
+                  ></label
+                >
+                <label
+                  ><input type="radio" name="kind" value="resourcepack" /><span
+                    data-i18n="kind.resourcepack"
+                    >Resource pack</span
+                  ></label
+                >
+                <label
+                  ><input type="radio" name="kind" value="shader" /><span data-i18n="kind.shader"
+                    >Shader</span
+                  ></label
+                >
+              </div>
+            </fieldset>
+
+            <div class="field">
+              <label for="f-loader" data-i18n="library.loader">Loader</label>
+              <select id="f-loader" name="loader">
+                <option value="" data-i18n="library.anyLoader">Hepsi</option>
+                <option value="fabric">Fabric</option>
+                <option value="quilt">Quilt</option>
+                <option value="forge">Forge</option>
+                <option value="neoforge">NeoForge</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="f-mc" data-i18n="library.mc">Minecraft sürümü</label>
+              <select id="f-mc" name="mc">
+                <option value="" data-i18n="library.anyMc">Hepsi</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="f-sort" data-i18n="library.sort">Sırala</label>
+              <select id="f-sort" name="sort">
+                <option value="new" data-i18n="library.sortNew">En yeni</option>
+                <option value="name" data-i18n="library.sortName">Ada göre (A–Z)</option>
+              </select>
+            </div>
+
+            <div class="field field-clear">
+              <button class="btn btn-ghost btn-sm" type="reset" data-i18n="library.clear" hidden>
+                Filtreleri temizle
+              </button>
+            </div>
+          </form>
+
+          <p class="results-status" role="status" aria-live="polite" data-status></p>
+          <div data-notice></div>
+          <ul class="item-grid" data-results aria-busy="true"></ul>
+          <div class="results-more">
+            <button class="btn btn-ghost" type="button" data-more hidden data-i18n="library.more">
+              Daha fazla göster
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer data-shell="footer"></footer>
+  </body>
+</html>

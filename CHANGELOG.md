@@ -5,6 +5,14 @@ Biçim [Keep a Changelog](https://keepachangelog.com/tr/1.1.0/) temellidir; sür
 
 ## [Unreleased]
 
+### Eklendi
+
+- Kütüphane sayfası: onaylı modlar, modpack'ler, resource pack'ler ve shader'lar giriş yapmadan
+  aranıp tür, loader ve Minecraft sürümüne göre filtrelenebiliyor; arama bağlantı olarak
+  paylaşılabiliyor.
+- İçerik sayfası: bilgiler, kurulum ipucu ve SHA-1 ile birlikte giriş yapmadan indirme.
+- Ana sayfada son eklenen içerikler gösteriliyor; "çok yakında" kutusu kalktı.
+
 ## [0.1.0] - 2026-11-18
 
 ### Eklendi

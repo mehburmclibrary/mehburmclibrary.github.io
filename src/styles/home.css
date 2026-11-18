@@ -1,4 +1,4 @@
-/* Ana sayfa (Faz 1: tanıtım + "yakında"). Faz 3'te kütüphane listesi buraya gelecek. */
+/* Ana sayfa: tanıtım, içerik türleri ve "nasıl çalışır". Kart listesi stilleri library.css'te. */
 
 .hero {
   padding-block: clamp(3rem, 8vw, 5.5rem) var(--section-space);
@@ -30,15 +30,7 @@
 }
 .hero .section-lead {
   margin-inline: auto;
-}
-.hero-soon {
-  display: inline-block;
-  margin: 0.5rem 0 2rem;
-  padding: 0.6rem 1rem;
-  color: var(--text);
-  background: var(--surface-1);
-  border: 1px dashed rgb(var(--accent-rgb) / 0.5);
-  border-radius: var(--radius);
+  margin-bottom: 2rem;
 }
 .hero-actions {
   display: flex;
