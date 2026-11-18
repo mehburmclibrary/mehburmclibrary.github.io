@@ -30,12 +30,14 @@ Launcher v0.33.0, `supabase/library_web.sql` (MehburMC-Launcher PR #10). Supabas
 - Launcher'ın kendi liste fonksiyonu giriş yapmamış ziyaretçiye kapatıldı
 - `library_web_test.sql` → `LIBRARY_WEB_OK`
 
-## Faz 3: Kütüphane vitrini (v0.2.0)
+## Faz 3: Kütüphane vitrini ✅ (v0.2.0)
 
-- Liste, arama, filtreler (tür / loader / Minecraft sürümü), sıralama
-- Detay sayfası, girişsiz indirme
-- Yükleniyor / boş / hata durumları, mobil uyum
-- Supabase indirme kotasının (egress) izlenmesi
+- `/library/`: arama, filtreler (tür / loader / Minecraft sürümü), sıralama, "daha fazla göster";
+  filtreler adres çubuğunda
+- `/item/?id=…`: bilgiler, kurulum ipucu, SHA-1, girişsiz indirme (kısa süreli imzalı bağlantı)
+- Ana sayfada son eklenenler; tür kartları ilgili filtreye gider
+- Yükleniyor / boş / hata durumları, mobil uyum, iki dil
+- Supabase indirme kotası (egress): README'de nasıl izleneceği yazıyor
 
 ## Faz 4: Hesap sistemi
 
@@ -66,6 +68,6 @@ Launcher v0.33.0, `supabase/library_web.sql` (MehburMC-Launcher PR #10). Supabas
 ## Bilinen riskler
 
 - **Supabase indirme kotası:** Girişsiz indirme, ücretsiz plandaki aylık veri aktarımını hızlı
-  tüketebilir. Faz 3'te izlenecek.
+  tüketebilir. Supabase → Usage → Egress'ten düzenli bakılmalı (bkz. README).
 - **picomatch (high):** Yalnızca geliştirme araçlarında kullanılan bir pakette güvenlik açığı var,
   düzeltilmiş sürümü henüz yok. Yayınlanan siteye girmez; Dependabot ile takip ediliyor.
